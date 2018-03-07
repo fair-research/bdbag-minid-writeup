@@ -18,27 +18,35 @@ Big data from high throughput experiments and other sources create exciting new 
 They also present considerable challenges for researchers and indeed for the research process, 
 due to the difficulties inherent in manipulating large data volumes and capturing the resulting analysis workflows in reproducible forms.
 In particular, despite broad acceptance of the importance of ensuring that data are
-
-
+Findable, Accessible, Interoperable, and Reusable (FAIR)~\cite{wilkinson16},
+many big data languish unused. 
 
 In response, the NIH BD2K Big Data for Discovery Science (BDDS) center 
-has developed two powerful new constructs that simplify both the implementation and recording of 
-complex big data application: Big Data Bags (BDBags) for data exchange and 
-minimal identifiers (Minids) as persistent identifiers for intermediate data products,
-and how they allow resources used in biomedical research to be captured in reusable forms that are accessible via persistent identifiers. 
-The result is that big data need not be hard-to-use data. 
+has developed two powerful new constructs that simplify the realization of FAIRness in 
+complex big data applications: Big Data Bags (BDBags) for data exchange and 
+minimal identifiers (Minids) as persistent identifiers for intermediate data products.
+Together, and in conjunction with other tools developed by BDDS team members and partners,
+these constructs allow biomedical data to be captured in reusable forms that are accessible via persistent identifiers. 
+The result is that big data need not be hard to find, access, nor (re)use. 
 %Modern tools can be used to automate routine but complex tasks, capture analysis algorithms in understandable and reusable forms, and harness fast networks and powerful cloud computers to process data rapidly without sacrificing usability or reproducibility. 
 
 \section{BDBags and Minids: Why, What, and How}
 
 Reproducible big data science requires mechanisms for describing, referring to, and exchanging large  and complex datasets that may comprise many directories and files (elements).
-Key requirements here are~\cite{chard16} 
+Five key requirements are~\cite{chard16}:
+\begin{enumerate}
+\item
 \textbf{enumeration}: explicit enumeration of a dataset's elements, so that
 subsequent additions or deletions can be detected; 
+\item
 \textbf{fixity}: enable verification of dataset contents, so that data consumers can detect errors in data transmission or modifications to data elements; 
+\item
 \textbf{description}: provide interoperable methods for tracking the attributes (metadata) and origins (provenance) of dataset contents; 
+\item
 \textbf{distribution}: allow a dataset to contain elements from more than one location; and
+\item
 \textbf{identification}: provide a reliable and concise way of referring to datasets for purposes of collaboration, publication, and citation.
+\end{enumerate}
 
 %\begin{figure}
 %\begin{tabbing}
@@ -264,23 +272,65 @@ Globus cloud services for authentication and data transfer;
 and the Galaxy-based Globus Genomics and Docker containers for reproducible cloud-based computations. 
 
 
-\subsection{External adoption of BDBag}
+\subsection{External adoption of BDBag and Minid software}
 
-We know from various sources about other groups that are already using BDBags for various purposes.
-This adoption, plus the number who have ``starred" the BDBag repository, is a nice validation of the
+GitHub provides us with some information about who is using our BDBag and Minid software,
+in that we can search to see where the software is included in other public GitHub repositories. 
+This usage, plus the number who have ``starred" the BDBag repository, is a nice validation of the
 utility of the work. For example:
+
 \begin{itemize}
 \item
-RENCI
+The BD2K BDDS project used BDBags and/or Minids in the following products developed within BDDS:
+\begin{itemize}
+\item
+Encode2Bag client and service: \url{https://github.com/ini-bdds/encode2bag} and 
+\url{https://github.com/ini-bdds/encode2bag-service}
 
 \item
-...
+SOCR-Dashboard: \url{https://github.com/BD2K/SOCR-Dashboard}
 
 \item
-...
-
+Peptide Atlas: \url{http://www.peptideatlas.org/}
 \end{itemize}
 
+\item
+BD2K BDDS team participants have also integrated BDBags and Minids into other tools 
+developed in part with resources external to BDDS:
+\begin{itemize}
+\item
+The USC/ISI Discovery Environment for Relational Information and Versioned Assets (DERIVA) 
+team uses BDBag and Minid for data import and export, enabling interoperability with other elements of the big biomedical data ecosystem. See \url{http://isrd.isi.edu/deriva/} and \url{https://github.com/informatics-isi-edu/deriva-py}.
+\item
+The UChicago team uses BDBags and Minids for data import and export within Globus Genomics 
+(\url{http://globusgenomics.org/}). See \url{https://github.com/globusgenomics/genomics-footprint}.
+\end{itemize}
+
+\item
+The NIDCR-funded Facebase resource (see \url{https://www.facebase.org}) uses DERIVA, and hence BDBags and Minids, for data import and export.
+
+\item
+The Galaxy project (\url{https://galaxyproject.org/}) is integrating BDBag and Minid support for data import and export. 
+See \url{https://github.com/galaxyproject/galaxy}.
+
+\item
+The Gene Ontology (\url{http://geneontology.org/}) project is integrating BDBag and Minid support for data import and export.
+See \url{https://github.com/geneontology}.
+
+\item
+The Monarch Initiative (\url{https://monarchinitiative.org} is evaluating BDBags for data import and export. See
+\url{https://github.com/monarch-initiative/dipper/issues/551}.
+
+\item
+The NIH NCATS Tangerine Data Translator (https://ncats.nih.gov/translator) is using BDBags
+as a basis for its ``smart bag" technology. See 
+\url{https://github.com/NCATS-Tangerine/smartBag}.
+
+\item
+The University of Chicago Center for Data Intensive Science (CDIS) is considering 
+BDBag and Minid for use within its Peregrine/IndexD, as a basis for interoperability with other elements
+of the NIH Data Commons. \url{https://github.com/uc-cdis/indexd} and \url{https://github.com/uc-cdis/peregrine}
+\end{itemize}
 
 
 \bibliographystyle{unsrt}
