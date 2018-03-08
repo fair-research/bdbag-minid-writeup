@@ -20,17 +20,18 @@
 Big data from high throughput experiments and other sources create exciting new opportunities for biomedical discovery. 
 They also present considerable challenges %for researchers and indeed for the research process, 
 due to the difficulties inherent in manipulating large data volumes and capturing the resulting analysis workflows in reproducible forms.
-In particular, despite broad acceptance of the importance of ensuring that data are
+In particular, despite broad acceptance of the need to ensure that data are
 Findable, Accessible, Interoperable, and Reusable (FAIR)~\cite{wilkinson16},
-many big data languish unused. 
+many big data languish unfindable, inaccessible, non-interoperable, thus non-reusable.
 
 In response, the NIH BD2K Big Data for Discovery Science (BDDS) center~\cite{toga15}
 has developed two powerful new constructs that simplify the realization of FAIRness in 
 complex big data applications: Big Data Bags (BDBags) for data exchange and 
 minimal identifiers (Minids) as persistent identifiers for intermediate data products.
 Together, and in conjunction with other tools developed by BDDS team members and partners,
-these constructs allow biomedical data to be captured in reusable forms that are accessible via persistent identifiers. 
-The result is that big data need not be hard to find, access, nor (re)use. 
+these constructs \textbf{allow even the largest biomedical data to be captured, exchanged, and shared 
+in reusable forms that are accessible via persistent identifiers}. 
+The result, as we show in a variety of applications, is that big data need not be hard to find, access, nor (re)use. 
 %Modern tools can be used to automate routine but complex tasks, capture analysis algorithms in understandable and reusable forms, and harness fast networks and powerful cloud computers to process data rapidly without sacrificing usability or reproducibility. 
 
 \section{BDBags and Minids: Why, What, and How}
@@ -114,7 +115,7 @@ and for verifying contents based on checksums of individual data and metadata it
 \centering
 \includegraphics[width=0.8\textwidth]{figs/bdbag_gui_version.png}
 \caption{To give a flavor of the BDBag specification, we show an example of the BDBag GUI application selecting a bag
-representing the ABIDE preprocessed dataset available here: \smallurl{https://bd2kcat1.ini.usc.edu/abide/search/}.}
+representing the ABIDE preprocessed dataset available at \smallurl{https://bd2kcat1.ini.usc.edu/abide/search/}.}
 \end{figure}
 
 In summary, our contributions span four areas:
@@ -290,7 +291,7 @@ materialization of BDBags trivially easy for those who want a point-and-click us
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figs/bdbag_gui_fetch.png}
-\caption{}}
+\caption{TBD}
 \end{figure}
 
 \subsection{BDBag and Minid Python APIs} 
