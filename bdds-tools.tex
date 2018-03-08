@@ -99,11 +99,9 @@ and thus to provide a robust mechanism for exchanging large and complex data col
 
 Rather than start from scratch, we build on and extend an Internet Engineering Task Force (IETF) specification,
 BagIt~\cite{Kunze2015}.
-%To give a flavor of the BDBag specification.
-%we show an example in Fig~\ref{fig:2}. 
 From BagIt, we take a simple structure that represents a dataset's contents as directories and files contained within a data directory,
 with other elements providing checksum and metadata information required to verify and interpret the data. 
-On this foundation, we add features that allow for the encoding of references to remotely accessible data, with the information required to retrieve those data provided in a \texttt{fetch.txt} file as a (URL, LENGTH, FILENAME) triple, and the specification, via the use of Research Object~\cite{bechhofer2013linked} mechanisms, 
+On this foundation, we leverage features that allow for the encoding of references to remotely accessible data, with the information required to retrieve those data provided in a \texttt{fetch.txt} file as a (URL, LENGTH, FILENAME) triple, and the specification, via the use of Research Object~\cite{bechhofer2013linked} mechanisms,
 of the type and provenance of BDBag contents.  
 The ability to reference remote data also allows the definition of data collections that specific individuals may not have immediate permission to access, 
 as when access to data elements is restricted by data use agreements.
@@ -111,17 +109,25 @@ We then developed a comprehensive suite of tools for creating BDBags, for
 materialize the data in a BDBag in a standard way, for capturing metadata, 
 and for verifying contents based on checksums of individual data and metadata items.
 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{figs/bdbag_gui_version.png}
+\caption{To give a flavor of the BDBag specification, we show an example of the BDBag GUI application selecting a bag
+representing the ABIDE preprocessed dataset available here: \smallurl{https://bd2kcat1.ini.usc.edu/abide/search/}.}
+\end{figure}
+
 In summary, our contributions span four areas:
 \begin{enumerate}
 \item
 We designed, and obtained broad community support for, BagIt extensions that allow for big scientific data.
-These extensions include support for
+These extensions include comprehensive support for
 ``holey" bags (i.e., bags that contain references to remote data)
 and mechanisms for associating descriptions of bag contents in the form of a Research Object~\cite{bechhofer2013linked}.
 
 \item
-We developed high-quality open source implementations of tools for creating BDBags, 
-%along with associated file references and RO description, 
+We developed high-quality open source implementations of tools for creating BDBags,
+%along with associated file references and RO description,
 for resolving files that are represented via remote references, for validating
 bags, for creating bags of bags, and other purposes.
 
@@ -273,7 +279,19 @@ aaaa\=\kill
 \>\code{minid minid:b9j01d}\footnote{Note that this does NOT work.}
 \end{tabbing}
 \end{itemize}
- 
+
+\subsection{BDBag Graphical User Interface}
+
+Users new to BDBag and Bagit technology can download the BDBag GUI application for Windows an MacOSX systems from
+\smallurl{https://github.com/ini-bdds/bdbag_gui/releases}.  The BDBag GUI provides an intuitive graphical interface for
+working with any Bagit specification-compliant bag directory or archive, making the creation, consumption, and
+materialization of BDBags trivially easy for those who want a point-and-click user experience.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{figs/bdbag_gui_fetch.png}
+\caption{}}
+\end{figure}
 
 \subsection{BDBag and Minid Python APIs} 
 
