@@ -2,10 +2,10 @@
 
 \input preamble
 
-\newdimen\tlx
-\newdimen\tlx
-\newdimen\brx
-\newdimen\bry
+%\newdimen\tlx
+%\newdimen\tlx
+%\newdimen\brx
+%\newdimen\bry
 
 \title{BDBags and Minids:\\A Framework for Universal FAIRness}
 \author{}
@@ -24,7 +24,7 @@ In particular, despite broad acceptance of the importance of ensuring that data 
 Findable, Accessible, Interoperable, and Reusable (FAIR)~\cite{wilkinson16},
 many big data languish unused. 
 
-In response, the NIH BD2K Big Data for Discovery Science (BDDS) center 
+In response, the NIH BD2K Big Data for Discovery Science (BDDS) center~\cite{toga15}
 has developed two powerful new constructs that simplify the realization of FAIRness in 
 complex big data applications: Big Data Bags (BDBags) for data exchange and 
 minimal identifiers (Minids) as persistent identifiers for intermediate data products.
@@ -206,6 +206,7 @@ for materialization into the complete data set.
 %We leverage both of these combinations of Minids and bags in the TFBS workflows.
 
 
+
 \section{Using the BDBag and Minid software}
 
 The BDBag client tools are maintained on GitHub at \url{https://github.com/ini-bdds/bdbag} and the 
@@ -276,14 +277,57 @@ aaaa\=\kill
 
 \subsection{BDBag and Minid Python SDKs} 
 
-A
+TBD
 
+
+\subsection{Example: The \texttt{encode2bag} tool}
+
+We use a genomics example to illustrate how the BDBag and Minid tools can be used to reduce
+barriers to data sharing and reproducibility.
+The Encyclopedia of DNA Elements (ENCODE) consortium operates a database that aims to provide a
+comprehensive parts list of functional elements in the human genome.
+ENCODE provides a web portal that a researcher can use to query this database,
+using menus to specify parameters such as assay, biosample, and genomic annotations.
+The result is a set of data URLs,
+which must be downloaded individually and unfortunately do not come with associated metadata or context.
+Researchers often resort to building shell scripts to download and store the raw datasets.
+These manual data retrieval and management steps can be error-prone,
+time consuming, and difficult to reproduce.
+Researchers must manually save results to record data provenance (posing the same query to the database at different
+times is likely to give different results)
+and the only way to validate that downloaded files have not been corrupted is to download them again.
+In other words, the ENCODE portal is not particularly supportive of FAIR research.
+
+We thus used BDBag, Minid, and Globus tools to create a lightweight command line utility and web service, \texttt{encode2bag}.
+A researcher can use either the web interface or the command line interface to
+either enter an ENCODE query or upload an ENCODE metadata file describing a collection of datasets.
+They can then access the corresponding data, \emph{plus associated metadata and checksums}, as a BDBag.
+Selecting the ``Create BDBag'' button triggers the creation of a $\sim$100 kilobyte BDBag that encapsulates references to the files in question, metadata associated with those files, the query used to identify the data, and the checksums required to validate the files and metadata.
+The BDBag is stored in AWS Simple Storage Service (S3) cloud storage from where it can be accessed for purposes of sharing, reproducibility, or validation.
+Because this BDBag contains references to data, rather the data themselves, it captures the entire response to the query in a small (hundreds of kilobytes) form that can be easily downloaded, moved, and shared.
+When needed, all, or a subset of, the files named within the BDBag's \text{fetch.txt} file can be downloaded
+(using BDBag tools), while ensuring that their contents match those of the original query.
+
+To further streamline access to query results, \texttt{encode2bag} assigns a Minid for each BDBag that it creates,
+so as to provide for unambiguous naming and identification of research data products that are used for data provenance.
+The Minid can be passed between services as a concise reference to the BDBag.
+
+The \texttt{encode2bag} service proved vital when creating a reproducible version~\cite{madduri2018reproducible}
+of a workflow developed by Funk et al.~\cite{funk18} to use ENCODE data to identify candidate
+transcription factor binding sites. 
+Funk et al.\ used
+ \texttt{encode2bag} to create BDBags for each of 27 tissue types, each with its own Minid.
+These 27 BDBags contain references to a total of 2.4 TB of ENCODE data;
+references that can be followed at any time to access the associated data.
+A separate ``bag of bags" contains references to each of the 27 tissue type bags. 
 
 \section{Evaluating Impact}
 
 These tools work naturally with other tools
 Globus cloud services for authentication and data transfer; 
 and the Galaxy-based Globus Genomics and Docker containers for reproducible cloud-based computations. 
+
+Reference Trena paper~\cite{funk18} and reproducible version~\cite{madduri2018reproducible}.
 
 
 \subsection{External adoption of BDBag and Minid software}
@@ -340,8 +384,8 @@ The Monarch Initiative (\url{https://monarchinitiative.org} is evaluating BDBags
 
 \item
 The NIH National Center for Advancing Translational Research (NCATS) Data Translator team
-(https://ncats.nih.gov/translator) is using BDBags
-as a basis for its ``smart bag" technology. See 
+(https://ncats.nih.gov/translator) uses BDBags
+in its ``smart bag" technology. See 
 \url{https://github.com/NCATS-Tangerine/smartBag}.
 
 \item
@@ -351,7 +395,7 @@ of the NIH Data Commons. \url{https://github.com/uc-cdis/indexd} and \url{https:
 \end{itemize}
 
 \item
-Finally, we note that BDBags are starting to see use outside biomedicine. For example, they are being integrated
+BDBags and Minids are also being used outside biomedicine. For example, they are being integrated
 into the Materials Data Facility (\url{https://www.materialsdata facility}) as a standard format for data import and
 export. 
 
