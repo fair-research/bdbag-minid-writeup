@@ -303,11 +303,21 @@ Figure~\ref{fig:bob}, from the \texttt{bagofbags} documentation, illustrates its
 \caption{At top, an example use of the \texttt{bagofbags} tool; below, an illustration of the BDBag created, which contains the usual files that are to be found in a BDBag, with the \texttt{fetch.txt} file containing the Minids that can be used to fetch their contents and the \texttt{data/manifest.json} containing descriptive metadata. In addition, the \texttt{data/README} file contains background information.\label{fig:bob}}
 \end{figure}
 
-\subsubsection{The Data Concierge tool}
+\subsubsection{The Data Concierge services}
 
-This service takes a set of Search results, creates a BDBag, and tracks the location with a Minid.
+%This service takes a set of Search results, creates a BDBag, and tracks the location with a Minid.
+The Concierge Services implement a set of REST APIs secured with Globus Auth that handle common patterns around data management, using standards wherever possible. 
+The Services include \texttt{search2bag}, which accepts a set of URIs to datasets and returns a digital identifier (a Minid) that references a BDBag stored in a configurable location such as S3. 
+This can be used to track groupings of datasets by users in a portal, for example, with the Minid acting as the primary key. 
+The \texttt{stagebag} Service is intended be incorporated into workflows or to simplify data transfers and staging by users. 
+As one parameter, it accepts one or more Minids referencing BDBags, on the assumption that the remote references for the data in the BDBags are Globus URIs. 
+The other parameters are a destination Globus endpoint and path. 
+The Service iterates through the URIs referenced in the BDBags and submits a Globus Transfer request to the destination. 
+The identifier of the Transfer request is returned for the portal or user to monitor its progress. 
+%The final planned Service, \texttt{checkbag}, is in development. 
+%It will utilize a remote checksum storage API to compare the checksums of files on an endpoint with those in the BDBag. 
+%This enables the creation of integrity checking services, and also allows users to know which files they may have modified during their work.
 See \smallurl{https://github.com/ini-bdds/data-concierge}.
-
 
 \subsubsection{The \texttt{encode2bag} tool}
 
