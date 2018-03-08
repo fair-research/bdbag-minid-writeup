@@ -70,11 +70,11 @@
 \usepackage[belowskip=-4pt,aboveskip=0pt, font={small,it}]{caption}
 
 \usepackage[explicit]{titlesec}
-\titleformat{\section}
-  {\normalfont\Large\bfseries}{\thesection}{1em}{#1}[{\titlerule[0.8pt]}]
-\titlespacing{\section}{0pt}{*1.7}{*1.25}
-\titlespacing{\subsection}{0pt}{*1.25}{*0.15}
-\titleformat{\subsection}[runin]{\bfseries}{\thesubsection}{1em}{#1}[~~]
+%\titleformat{\section}
+%  {\normalfont\Large\bfseries}{\thesection}{1em}{#1}[{\titlerule[0.8pt]}]
+%\titlespacing{\section}{0pt}{*1.7}{*1.25}
+\titlespacing*{\subsection}{0pt}{*1.5}{*0.2}
+%\titleformat{\subsection}[runin]{\bfseries}{\thesubsection}{1em}{#1}[~~]
 \titleformat{\subsubsection}[runin]{\slshape}{\thesubsubsection}{1em}{#1}[~~]
 \titlespacing{\subsubsection}{0pt}{*0.105}{*1.00}
 %\titlespacing{\subsubsection}{0pt}{*0.105}{*0.50}
@@ -92,8 +92,8 @@
 %\titleformat{\subsubsection}[runin]{\normalfont\itshape}{\thesubsubsection}{1em}{}[.~~]
 
 % The * version of titlespacing removes the indent on the first paragraph of a section
-\titlespacing*{\section}{0pt}{*0.8}{*0.5}
-\titlespacing*{\subsection}{0pt}{*1}{*0.15}
+\titlespacing*{\section}{0pt}{*2.5}{*1}
+%\titlespacing*{\subsection}{0pt}{*1}{*0.15}
 \titlespacing*{\subsubsection}{0pt}{*1}{*0.15}
 \newcommand{\subsubsubsection}[1]{\vspace{1pt} \noindent \textbf{#1}}
 \usepackage{array,booktabs,tabularx}
