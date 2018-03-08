@@ -67,7 +67,7 @@
 ]{nlsiderules}
 
 
-\usepackage[belowskip=-4pt,aboveskip=0pt, font={small,it}]{caption}
+%\usepackage[belowskip=-4pt,aboveskip=0pt, font={small,it}]{caption}
 
 \usepackage[explicit]{titlesec}
 %\titleformat{\section}
@@ -75,8 +75,8 @@
 %\titlespacing{\section}{0pt}{*1.7}{*1.25}
 \titlespacing*{\subsection}{0pt}{*1.5}{*0.2}
 %\titleformat{\subsection}[runin]{\bfseries}{\thesubsection}{1em}{#1}[~~]
-\titleformat{\subsubsection}[runin]{\slshape}{\thesubsubsection}{1em}{#1}[~~]
-\titlespacing{\subsubsection}{0pt}{*0.105}{*1.00}
+%\titleformat{\subsubsection}[runin]{\slshape}{\thesubsubsection}{1em}{#1}[~~]
+\titlespacing*{\subsubsection}{0pt}{*1}{*0.2}
 %\titlespacing{\subsubsection}{0pt}{*0.105}{*0.50}
 \titleformat{\paragraph}[runin]{\slshape}{\theparagraph}{1em}{#1}[.]
 \titlespacing{\paragraph}{0pt}{*0.105}{*1.00}
@@ -94,12 +94,15 @@
 % The * version of titlespacing removes the indent on the first paragraph of a section
 \titlespacing*{\section}{0pt}{*2.5}{*1}
 %\titlespacing*{\subsection}{0pt}{*1}{*0.15}
-\titlespacing*{\subsubsection}{0pt}{*1}{*0.15}
-\newcommand{\subsubsubsection}[1]{\vspace{1pt} \noindent \textbf{#1}}
+%\titlespacing*{\subsubsection}{0pt}{*1}{*0.15}
+%\newcommand{\subsubsubsection}[1]{\vspace{1pt} \noindent \textbf{#1}}
 \usepackage{array,booktabs,tabularx}
 
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3} 
+
+\newcommand{\smallurl}[1]{{\small\url{#1}}} % For working version
+
 
 \newcommand{\sout}[1]{\textcolor{blue}{Strike: #1}} % For working version
 
@@ -118,33 +121,9 @@
 
 \newcommand{\zapspace}{\topsep=0pt\partopsep=0pt\itemsep=0pt\parskip=0pt}
 
-\usepackage{caption}
-\usepackage{subcaption}
+%\usepackage{caption}
+%\usepackage{subcaption}
 \newcommand\code[1]{{\tt {\small #1}}}
-
-
-\colorlet{punct}{red!60!black}
-\definecolor{background}{HTML}{EEEEEE}
-\definecolor{delim}{RGB}{20,105,176}
-\colorlet{numb}{magenta!60!black}
-
-\lstdefinelanguage{json}{
-    belowcaptionskip=1\baselineskip,
-    basicstyle=\footnotesize\ttfamily,
-    showstringspaces=false,
-    breaklines=true,
-    frame=tb,
-		captionpos=t,
-    literate=
-     *{:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
-}
-
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
 
 

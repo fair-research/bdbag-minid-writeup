@@ -209,8 +209,8 @@ for materialization into the complete data set.
 
 \section{Using the BDBag and Minid software}
 
-The BDBag client tools are maintained on GitHub at \url{https://github.com/ini-bdds/bdbag} and the 
-Minid client tools at \url{https://github.com/ini-bdds/minid}.
+The BDBag client tools are maintained on GitHub at \smallurl{https://github.com/ini-bdds/bdbag} and the 
+Minid client tools at \smallurl{https://github.com/ini-bdds/minid}.
 Each can be used in two different ways: from the command line or from Python.
 
 \subsection{BDBag and Minid command line tools} 
@@ -275,12 +275,41 @@ aaaa\=\kill
 \end{itemize}
  
 
-\subsection{BDBag and Minid Python SDKs} 
+\subsection{BDBag and Minid Python APIs} 
 
-TBD
+Programmers can integrate BDBag and Minid functionality into their applications by using
+Python APIs, as documented at \smallurl{https://github.com/ini-bdds/bdbag/blob/master/doc/api.md}.
+We have used these APIs are used to implement the command line tools just described,
+the \texttt{encode2bag} tool described next, and other applications listed in the rest of this section. 
 
 
-\subsection{Example: The \texttt{encode2bag} tool}
+\subsection{Tools that use BDBag and Minid APIs}
+
+We have developed a range of additional tools that provide useful functionality to users.
+These tools also serve as examples of how to integrate BDBag and Minid
+capabilities into applications.
+
+\subsubsection{The \texttt{bagofbags} tool}
+
+This application creates a bag that itself contains bags.
+It is used, for example, in the transcription factor
+binding site study~\cite{madduri2018reproducible}.
+See \smallurl{https://github.com/ini-bdds/bdbag/tree/master/examples/bagofbags}.
+Figure~\ref{fig:bob}, from the \texttt{bagofbags} documentation, illustrates its use.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{figs/MetaBags.png}
+\caption{At top, an example use of the \texttt{bagofbags} tool; below, an illustration of the BDBag created, which contains the usual files that are to be found in a BDBag, with the \texttt{fetch.txt} file containing the Minids that can be used to fetch their contents and the \texttt{data/manifest.json} containing descriptive metadata. In addition, the \texttt{data/README} file contains background information.\label{fig:bob}}
+\end{figure}
+
+\subsubsection{The Data Concierge tool}
+
+This service takes a set of Search results, creates a BDBag, and tracks the location with a Minid.
+See \smallurl{https://github.com/ini-bdds/data-concierge}.
+
+
+\subsubsection{The \texttt{encode2bag} tool}
 
 We use a genomics example to illustrate how the BDBag and Minid tools can be used to reduce
 barriers to data sharing and reproducibility.
@@ -322,8 +351,8 @@ references that can be followed at any time to access the associated data.
 A separate BDBag (a ``bag of bags") contains references to each of the 27 tissue type bags. 
 
 The \texttt{encode2bag} service and client side tool are available on GitHub at
-\url{https://github.com/ini-bdds/encode2bag} and 
-\url{https://github.com/ini-bdds/encode2bag-service}.
+\smallurl{https://github.com/ini-bdds/encode2bag} and 
+\smallurl{https://github.com/ini-bdds/encode2bag-service}.
 
 
 
@@ -348,14 +377,14 @@ For example:
 The BD2K BDDS project used BDBags and/or Minids in the following products: % developed within BDDS:
 \begin{itemize}
 \item
-Encode2Bag client and service: \url{https://github.com/ini-bdds/encode2bag} and 
-\url{https://github.com/ini-bdds/encode2bag-service}
+Encode2Bag client and service: \smallurl{https://github.com/ini-bdds/encode2bag} and 
+\smallurl{https://github.com/ini-bdds/encode2bag-service}
 
 \item
-SOCR-Dashboard: \url{https://github.com/BD2K/SOCR-Dashboard}
+SOCR-Dashboard: \smallurl{https://github.com/BD2K/SOCR-Dashboard}
 
 \item
-Peptide Atlas: \url{http://www.peptideatlas.org/}
+Peptide Atlas: \smallurl{http://www.peptideatlas.org/}
 \end{itemize}
 
 \item
@@ -364,45 +393,45 @@ developed in part with resources external to BDDS:
 \begin{itemize}
 \item
 The USC/ISI Discovery Environment for Relational Information and Versioned Assets (DERIVA) 
-team uses BDBag and Minid for data import and export, enabling interoperability with other elements of the big biomedical data ecosystem. See \url{http://isrd.isi.edu/deriva/} and \url{https://github.com/informatics-isi-edu/deriva-py}.
+team uses BDBag and Minid for data import and export, enabling interoperability with other elements of the big biomedical data ecosystem. See \smallurl{http://isrd.isi.edu/deriva/} and \smallurl{https://github.com/informatics-isi-edu/deriva-py}.
 \item
 The UChicago team uses BDBags and Minids for data import and export within Globus Genomics 
-(\url{http://globusgenomics.org/}). See \url{https://github.com/globusgenomics/genomics-footprint}.
+(\smallurl{http://globusgenomics.org/}). See \smallurl{https://github.com/globusgenomics/genomics-footprint}.
 \end{itemize}
 
 \item
 A number of groups external to BDDS are using BDBag and Minid technology in biomedical projects:
 \begin{itemize}
 \item
-The NIDCR-funded Facebase resource (see \url{https://www.facebase.org}) uses DERIVA, and hence BDBags and Minids, for data import and export.
+The NIDCR-funded Facebase resource (see \smallurl{https://www.facebase.org}) uses DERIVA, and hence BDBags and Minids, for data import and export.
 
 \item
-The Galaxy project (\url{https://galaxyproject.org/}) is integrating BDBag and Minid support for data import and export. 
-See \url{https://github.com/galaxyproject/galaxy}.
+The Galaxy project (\smallurl{https://galaxyproject.org/}) is integrating BDBag and Minid support for data import and export. 
+See \smallurl{https://github.com/galaxyproject/galaxy}.
 
 \item
-The Gene Ontology (\url{http://geneontology.org/}) project is integrating BDBag and Minid support for data import and export.
-See \url{https://github.com/geneontology}.
+The Gene Ontology (\smallurl{http://geneontology.org/}) project is integrating BDBag and Minid support for data import and export.
+See \smallurl{https://github.com/geneontology}.
 
 \item
-The Monarch Initiative (\url{https://monarchinitiative.org} is evaluating BDBags for data import and export. See
-\url{https://github.com/monarch-initiative/dipper/issues/551}.
+The Monarch Initiative (\smallurl{https://monarchinitiative.org} is evaluating BDBags for data import and export. See
+\smallurl{https://github.com/monarch-initiative/dipper/issues/551}.
 
 \item
 The NIH National Center for Advancing Translational Research (NCATS) Data Translator team
 (https://ncats.nih.gov/translator) uses BDBags
 in its ``smart bag" technology. See 
-\url{https://github.com/NCATS-Tangerine/smartBag}.
+\smallurl{https://github.com/NCATS-Tangerine/smartBag}.
 
 \item
 The University of Chicago Center for Data Intensive Science (CDIS) is considering 
 BDBag and Minid for use within its Peregrine/IndexD, as a basis for interoperability with other elements
-of the NIH Data Commons. \url{https://github.com/uc-cdis/indexd} and \url{https://github.com/uc-cdis/peregrine}
+of the NIH Data Commons. \smallurl{https://github.com/uc-cdis/indexd} and \smallurl{https://github.com/uc-cdis/peregrine}
 \end{itemize}
 
 \item
 BDBags and Minids are also being used outside biomedicine. For example, they are being integrated
-into the Materials Data Facility (\url{https://www.materialsdata facility}) as a standard format for data import and
+into the Materials Data Facility (\smallurl{https://www.materialsdata facility}) as a standard format for data import and
 export. 
 
 \end{itemize}
