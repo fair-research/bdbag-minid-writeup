@@ -36,34 +36,36 @@ The result, as we show in a variety of applications, is that big data need not b
 
 \vspace{2ex}
 
-\noindent\fbox{%
+\noindent\shadowbox{%
     \parbox{0.985\textwidth}{%
 The BDDS contributions to FAIR big data science described in this document span four areas:
 \begin{enumerate}
+\itemsep0em 
 \item
-The BDBag exchange format and Minid identifier for the exchange of big scientific data,
+The \textbf{BDBag exchange format and Minid identifier} for the exchange of big scientific data,
 with comprehensive support for
 ``holey" bags (i.e., bags that contain references to remote data)
 and for associating descriptions of bag contents in the form of a Research Object~\cite{bechhofer2013linked}.
 
 \item
-High-quality open source implementations of a comprehensive set of  
+High-quality \textbf{open source implementations} of a comprehensive set of  
 command line tools and Python APIs for manipulating BDBags and Minids.
 %along with associated file references and RO description,
 for resolving files that are represented via remote references, for validating
 bags, for creating bags of bags, and other purposes.
 
 \item
-Integration of BDBag and Minid mechanisms with a range of other tools, 
+\textbf{Integration} of BDBag and Minid mechanisms with a range of other tools, 
 such as Globus and Galaxy 
 to provide end-to-end solutions to the problem of organizing and sharing big data. 
 
 \item
-Compelling example applications that demonstrate the value of BDBag and Minid capabilities,
-such as an ENCODE portal, transcription factor binding site analysis~\cite{}, and
-XXX.
-
+Compelling \textbf{example applications} that demonstrate the value of BDBag and Minid capabilities,
+such as an ENCODE portal, transcription factor binding site analysis~\cite{madduri2018reproducible}, and
+Peptide Atlas.
 \end{enumerate}
+
+\vspace{-1ex}
 }
 }
 
@@ -78,18 +80,19 @@ and exchanging large  and complex datasets that may comprise many directories an
 The following five requirements are key:
 %Five key requirements are~\cite{chard16}:
 \begin{enumerate}
+\itemsep0em 
 \item
-\textbf{enumeration}: explicit enumeration of a dataset's elements, so that
-subsequent additions or deletions can be detected; 
+\textbf{Enumeration}: Explicit enumeration of a dataset's elements, so that
+subsequent additions or deletions can be detected.
 \item
-\textbf{fixity}: enable verification of dataset contents, 
-so that data consumers can detect errors in data transmission or modifications to data elements; 
+\textbf{Fixity}: Enable verification of dataset contents, 
+so that data consumers can detect errors in data transmission or modifications to data elements.
 \item
-\textbf{description}: provide interoperable methods for tracking the attributes (metadata) and origins (provenance) of dataset contents; 
+\textbf{Description}: Provide interoperable methods for tracking the attributes (metadata) and origins (provenance) of dataset contents; 
 \item
-\textbf{distribution}: allow a dataset to contain elements from more than one location; and
+\textbf{Distribution}: Allow a dataset to contain elements from more than one location.
 \item
-\textbf{identification}: provide a reliable and concise way of referring to datasets for purposes of collaboration, publication, and citation.
+\textbf{Identification}: Provide a reliable and concise way of referring to datasets for purposes of collaboration, publication, and citation.
 \end{enumerate}
 
 %\begin{figure}
@@ -160,7 +163,7 @@ and for verifying contents based on checksums of individual data and metadata it
 
 \vspace{2ex}
 
-\noindent\fbox{%
+\noindent\shadowbox{%
     \parbox{0.985\textwidth}{%
 The BDBag makes it possible to
 capture in a concise document a consistent, self-describing, integrity-verifiable description of even
@@ -265,7 +268,7 @@ and the Amazon cloud to host the Minid service that we have created.
 
 \vspace{2ex}
 
-\noindent\fbox{%
+\noindent\shadowbox{%
     \parbox{0.985\textwidth}{%
 The Minid makes it possible to generate, at any time and at insignificant cost, a persistent identifier
 for a file or dataset. 
@@ -278,7 +281,7 @@ of the referenced data.
 
 \subsection{Using BDBags and Minids together} 
 
-While Minids and BDBags can be used independently, they can be used together to powerful effect. 
+While Minids and BDBags can be used independently, they are yet more powerful when used together. 
 We can create a Minid for a BDBag, 
 allowing us to uniquely identify the BDBag instance and providing a repeatable method for referring to the BDBag. 
 A Minid can be used as the URL for a remote file reference within a BDBag's \texttt{fetch.txt} file,
@@ -310,21 +313,28 @@ aaaa\=\kill
 \noindent
 The \code{bdbag} tool can then be used to perform a wide variety of tasks, such as the following.
 \begin{itemize}
+\vspace{-1ex}
+
+%\itemsep0em 
 \item
-We can create a BDBag containing the data in \texttt{my-data/}:
+Create a BDBag containing the data in \texttt{my-data/}:
 \vspace{-2ex}
 \begin{tabbing}
 aaaa\=\kill
 \>\code{bdbag ./my-data/}
 \end{tabbing}
 
+\vspace{-2ex}
+
 \item
-We can add references to the URIs listed in \texttt{my-manifest.json}, to create a holey bag:
+Add references to the URIs listed in \texttt{my-manifest.json}, to create a holey bag:
 \vspace{-2ex}
 \begin{tabbing}
 aaaa\=\kill
 \>\code{bdbag ./my-data/ --update --remote-file-manifest ./my-manifest.json}
 \end{tabbing}
+
+\vspace{-2ex}
 
 \item
 Validate the bag, and create an archive file for sharing
@@ -334,10 +344,14 @@ aaaa\=\kill
 \>\code{bdbag ./my-data/ --validate fast --validate-profile --archive tgz}
 \end{tabbing}
 
+\vspace{-2ex}
+
 \end{itemize}
 
 \noindent
-Similarly, the \code{minid} tool can be used to do a wide variety of things, including:
+Similarly, the \code{minid} tool can be used to do many different things, such as:
+
+\vspace{-1ex}
 
 \begin{itemize}
 \item
@@ -348,6 +362,8 @@ aaaa\=\kill
 \>\code{minid --register --title "My data" my-file --locations my-locn1}
 \end{tabbing}
 
+\vspace{-2ex}
+
 \item
 Retrieve metadata about an identifier:
 \vspace{-2ex}
@@ -357,13 +373,23 @@ aaaa\=\kill
 \end{tabbing}
 \end{itemize}
 
+\vspace{-2ex}
+
 \subsection{BDBag Graphical User Interface}
 
 Users new to BDBag technology can download the BDBag GUI application for Windows and MacOS systems from
 \smallurl{https://github.com/ini-bdds/bdbag_gui/releases}.  This GUI provides an intuitive graphical interface for
 working with any BagIt (and thus BDBag) specification-compliant bag directory or archive, making the creation, consumption, and
 materialization of BDBags trivially easy for those who want a point-and-click user experience.
-Figures~\ref{fig:gui1} and~\ref{fig:gui2} show the GUI.
+Figure~\ref{fig:gui} shows the GUI.
+
+\subsection{BDBag and Minid Python APIs} 
+
+Programmers can integrate BDBag and Minid functionality into their applications by using
+Python APIs, as documented at \smallurl{https://github.com/ini-bdds/bdbag/blob/master/doc/api.md}.
+We have used these APIs to implement the command line tools just described,
+the \texttt{encode2bag} tool described next, and other applications listed in the rest of this section. 
+
 
 \begin{figure}
 \centering
@@ -375,12 +401,6 @@ supported. On the right, the user has initiated a ``Fetch Missing" operation on 
 bag. Progress is shown in the lower panes.\label{fig:gui}}
 \end{figure}
 
-\subsection{BDBag and Minid Python APIs} 
-
-Programmers can integrate BDBag and Minid functionality into their applications by using
-Python APIs, as documented at \smallurl{https://github.com/ini-bdds/bdbag/blob/master/doc/api.md}.
-We have used these APIs are used to implement the command line tools just described,
-the \texttt{encode2bag} tool described next, and other applications listed in the rest of this section. 
 
 
 \subsection{Tools that use BDBag and Minid APIs}
@@ -407,13 +427,15 @@ Figure~\ref{fig:bob}, from the \texttt{bagofbags} documentation, illustrates its
 
 %This service takes a set of Search results, creates a BDBag, and tracks the location with a Minid.
 The Concierge Services implement a set of REST APIs secured with Globus Auth that handle common patterns around data management, using standards wherever possible. 
-The Services include \texttt{search2bag}, which accepts a set of URIs to datasets and returns a digital identifier (a Minid) that references a BDBag stored in a configurable location such as S3. 
+The \texttt{search2bag} service accepts a set of URIs to datasets and returns a digital identifier (a Minid) that references a BDBag stored in a configurable location such as S3. 
 This can be used to track groupings of datasets by users in a portal, for example, with the Minid acting as the primary key. 
-The \texttt{stagebag} Service is intended be incorporated into workflows or to simplify data transfers and staging by users. 
-As one parameter, it accepts one or more Minids referencing BDBags, on the assumption that the remote references for the data in the BDBags are Globus URIs. 
-The other parameters are a destination Globus endpoint and path. 
-The Service iterates through the URIs referenced in the BDBags and submits a Globus Transfer request to the destination. 
-The identifier of the Transfer request is returned for the portal or user to monitor its progress. 
+The \texttt{stagebag} service can be incorporated into workflows to simplify data transfers and staging by users. 
+It takes as parameters one or more Minids referencing BDBags plus
+%on the assumption that the remote references for the data in the BDBags are Globus URIs. 
+a destination Globus endpoint and path. 
+%It iterates through the URIs referenced in the BDBags and submits a Globus Transfer request to the destination.
+It initiates a Globus transfer request and returns the associated identifier so that  
+ the portal or user can monitor its progress. 
 %The final planned Service, \texttt{checkbag}, is in development. 
 %It will utilize a remote checksum storage API to compare the checksums of files on an endpoint with those in the BDBag. 
 %This enables the creation of integrity checking services, and also allows users to know which files they may have modified during their work.
@@ -421,61 +443,72 @@ See \smallurl{https://github.com/ini-bdds/data-concierge}.
 
 \subsubsection{The \texttt{encode2bag} tool}
 
-We use a genomics example to illustrate how the BDBag and Minid tools can be used to reduce
-barriers to data sharing and reproducibility.
+%We use a genomics example to illustrate how the BDBag and Minid tools can be used to reduce
+%barriers to data sharing and reproducibility.
 The Encyclopedia of DNA Elements (ENCODE) consortium operates a database that aims to provide a
 comprehensive parts list of functional elements in the human genome.
 ENCODE provides a web portal that a researcher can use to query this database,
 using menus to specify parameters such as assay, biosample, and genomic annotations.
 The result is a set of data URLs,
 which must be downloaded individually and unfortunately do not come with associated metadata or context.
-Researchers often resort to building shell scripts to download and store the raw datasets.
+%Researchers often resort to building shell scripts to download and store the raw datasets.
 These manual data retrieval and management steps can be error-prone,
 time consuming, and difficult to reproduce.
-Researchers must manually save results to record data provenance (posing the same query to the database at different
-times may give different results)
-and the only way to validate that downloaded files have not been corrupted is to download them again.
-In other words, the ENCODE portal is not particularly supportive of FAIR research.
+%Researchers must manually save results to record data provenance (posing the same query to the database at different times may give different results)
+%and the only way to validate that downloaded files have not been corrupted is to download them again.
+%In other words, the ENCODE portal is not particularly supportive of FAIR research.
 
 We thus used BDBag, Minid, and Globus tools to create a lightweight command line utility and web service, \texttt{encode2bag}.
-A researcher can use either the web interface or the command line interface to
-either enter an ENCODE query or upload an ENCODE metadata file describing a collection of datasets.
-They can then access the corresponding data, \emph{plus associated metadata and checksums}, as a BDBag.
-Selecting the ``Create BDBag'' button triggers the creation of a $\sim$100 kilobyte BDBag that encapsulates references to the files in question, metadata associated with those files, the query used to identify the data, and the checksums required to validate the files and metadata.
-The BDBag is stored in AWS Simple Storage Service (S3) cloud storage from where it can be accessed for purposes of sharing, reproducibility, or validation.
+A researcher uses either the web interface or the command line interface to specify required data,
+which they can then access,
+%either enter an ENCODE query or upload an ENCODE metadata file describing a collection of datasets.
+%They can then access the corresponding data, 
+\emph{plus associated metadata and checksums}, as a BDBag.
+%Selecting the ``Create BDBag'' button triggers the creation of a $\sim$100 kilobyte 
+The resulting BDBag encapsulates references to the files in question, metadata associated with those files, the query used to identify the data, and the checksums required to validate the files and metadata.
+%The BDBag is stored in AWS Simple Storage Service (S3) cloud storage from where it can be accessed for purposes of sharing, reproducibility, or validation.
 Because this BDBag contains references to data, rather the data themselves, it captures the entire response to the query in a small (hundreds of kilobytes) form that can be easily downloaded, moved, and shared.
 When needed, all, or a subset of, the files named within the BDBag's \texttt{fetch.txt} file can be downloaded
 (using BDBag tools), while ensuring that their contents match those of the original query.
-
 To further streamline access to query results, \texttt{encode2bag} assigns a Minid for each BDBag that it creates,
-so as to provide for unambiguous naming and identification of research data products that are used for data provenance.
+so as to provide for unambiguous naming and identification of research data products for data provenance.
 The Minid can be passed between services as a concise reference to the BDBag.
-
-The \texttt{encode2bag} service proved vital when creating a reproducible version~\cite{madduri2018reproducible}
-of a workflow developed by Funk et al.~\cite{funk18} to use ENCODE data to identify candidate
-transcription factor binding sites. 
-Funk et al.\ used
- \texttt{encode2bag} to create BDBags for each of 27 tissue types, each with its own Minid.
-These 27 BDBags contain references to a total of 2.4 TB of ENCODE data;
-references that can be followed at any time to access the associated data.
-A separate BDBag (a ``bag of bags") contains references to each of the 27 tissue type bags. 
 
 The \texttt{encode2bag} service and client side tool are available on GitHub at
 \smallurl{https://github.com/ini-bdds/encode2bag} and 
 \smallurl{https://github.com/ini-bdds/encode2bag-service}.
 
+\section{An Example Application}
+
+BDBags and Minids proved vital when creating a reproducible version~\cite{madduri2018reproducible}
+of a workflow developed by Funk et al.~\cite{funk18} to use ENCODE data to identify candidate
+transcription factor binding sites. 
+Funk et al.\ used \texttt{encode2bag} to create BDBags for each of 27 tissue types, each with its own Minid.
+These 27 BDBags contain references to a total of 2.4 TB of ENCODE data;
+references that can be followed at any time to access the associated data.
+A separate BDBag (a ``bag of bags"), created with the \texttt{bagofbags} tool described earlier,
+contains references to each of the 27 tissue type bags.
+
+The transcription factor binding site application also demonstrates how BDBag and Minid mechanisms
+can be integrated into other biomedical tools.
+For example, the large parallel cloud computations used to process ENCODE data were all performed
+with the Galaxy-based Globus Genomics.
+We extended Globus Genomics so that when a workflow is passed, as an argument, a Minid 
+that references a BDBag, 
+the contents of that BDBag are retrieved and passed to the analysis workflow.
+Figure~\ref{fig:5} shows the use of this capability.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth,trim=0.1in 0.4in 0in 0.6in,clip]{figs/Fig4-02-20}
+\caption{This figure, from Madduri et al.~\cite{madduri2018reproducible}, 
+shows how BDBags (each designated by a Minid) are used to package inputs and outputs for the
+ DNase-seq ensemble footprinting workflow of Funk et al.~\cite{funk18}.
+\label{fig:5}}
+\end{figure}
 
 
-\section{Evaluating Impact}
-
-These tools work naturally with other tools
-Globus cloud services for authentication and data transfer; 
-and the Galaxy-based Globus Genomics and Docker containers for reproducible cloud-based computations. 
-
-Reference Trena paper~\cite{funk18} and reproducible version~\cite{madduri2018reproducible}.
-
-
-\subsection{External adoption of BDBag and Minid software}
+\section{External Impact}
 
 GitHub provides us with some information about who is using our BDBag and Minid software,
 in that we can search to see where the software is included in other public GitHub repositories. 
@@ -484,7 +517,7 @@ For example:
 
 \begin{itemize}
 \item
-The BD2K BDDS project used BDBags and/or Minids in the following products: % developed within BDDS:
+The BD2K BDDS project use BDBags and/or Minids in the following products: % developed within BDDS:
 \begin{itemize}
 \item
 Encode2Bag client and service: \smallurl{https://github.com/ini-bdds/encode2bag} and 
