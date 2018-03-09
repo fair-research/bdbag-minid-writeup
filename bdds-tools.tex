@@ -7,7 +7,7 @@
 %\newdimen\brx
 %\newdimen\bry
 
-\title{BDBags and Minids:\\A Framework for Universal FAIRness}
+\title{BDBags and Minids:\\A Framework for FAIR Big Data Science}
 \author{}
 \date{}
 
@@ -33,6 +33,39 @@ these constructs \textbf{allow even the largest biomedical data to be captured, 
 in reusable forms that are accessible via persistent identifiers}. 
 The result, as we show in a variety of applications, is that big data need not be hard to find, access, nor (re)use. 
 %Modern tools can be used to automate routine but complex tasks, capture analysis algorithms in understandable and reusable forms, and harness fast networks and powerful cloud computers to process data rapidly without sacrificing usability or reproducibility. 
+
+\vspace{2ex}
+
+\noindent\fbox{%
+    \parbox{0.985\textwidth}{%
+The BDDS contributions to FAIR big data science described in this document span four areas:
+\begin{enumerate}
+\item
+The BDBag exchange format and Minid identifier for the exchange of big scientific data,
+with comprehensive support for
+``holey" bags (i.e., bags that contain references to remote data)
+and for associating descriptions of bag contents in the form of a Research Object~\cite{bechhofer2013linked}.
+
+\item
+High-quality open source implementations of a comprehensive set of  
+command line tools and Python APIs for manipulating BDBags and Minids.
+%along with associated file references and RO description,
+for resolving files that are represented via remote references, for validating
+bags, for creating bags of bags, and other purposes.
+
+\item
+Integration of BDBag and Minid mechanisms with a range of other tools, 
+such as Globus and Galaxy 
+to provide end-to-end solutions to the problem of organizing and sharing big data. 
+
+\item
+Compelling example applications that demonstrate the value of BDBag and Minid capabilities,
+such as an ENCODE portal, transcription factor binding site analysis~\cite{}, and
+XXX.
+
+\end{enumerate}
+}
+}
 
 \section{BDBags and Minids: Why, What, and How}
 
@@ -84,72 +117,98 @@ so that data consumers can detect errors in data transmission or modifications t
 
 Surprisingly, we determined early in BDDS that no existing technology addressed these requirements.
 Thus we made the development of suitable mechanisms a major focus of the project.
-The result is two important new technologies:
-the Big Data Bag (BDBag) for defining a dataset and its contents by enumerating and describing its elements, 
-regardless of their location (\emph{enumeration}, \emph{fixity}, \emph{description}, \emph{distribution})
-%the Research Object (RO)~\cite{bechhofer2013linked} to characterize a dataset and its contents with arbitrary levels of detail, regardless of their location (description);
-and the Minid to uniquely identify a dataset and, if desired, its constituent elements, 
-regardless of their location (\emph{identify}, \emph{fixity}).
-We define and implement each in ways that permit their easy integration into a wide variety of
-applications and workflows, without deployment of complex software on researcher computers.
+The result is two important new technologies, each defined in terms of existing standards and
+implemented in ways that permit easy integration into a wide variety of
+applications and workflows, without deployment of complex software on researcher computers~\cite{chard16}.
+
+%\begin{enumerate}
+%\item
+%the Big Data Bag (\textbf{BDBag}) exchange format and associated tools address the \emph{enumeration}, \emph{fixity}, \emph{description}, and \emph{distribution} requirements and
+%provide a robust mechanism for exchanging large and complex data collections; and 
+%%the Big Data Bag (\textbf{BDBag}) for defining a dataset and its contents by enumerating and describing its elements, 
+%%regardless of their location (addressing \emph{enumeration}, \emph{fixity}, \emph{description}, \emph{distribution});
+%%the Research Object (RO)~\cite{bechhofer2013linked} to characterize a dataset and its contents with arbitrary levels of detail, regardless of their location (description);
+%and
+%\item
+%the \textbf{Minid} identifier and associated tools address the \emph{identify} and \emph{fixity} requirements
+%and provide mechanisms for uniquely identifying a dataset and, if desired, its constituent elements, 
+%regardless of their location.
+%\end{enumerate}
 
 \subsection{Big Data Bags for exchange of large and complex data}
 
-We designed the BDBag exchange format and associated tools~\cite{chard16} to meet the \emph{enumeration}, \emph{fixity}, \emph{description}, and \emph{distribution} requirements identified above
-and thus to provide a robust mechanism for exchanging large and complex data collections.
+The Big Data Bag (\textbf{BDBag}) exchange format and associated tools address the \emph{enumeration}, \emph{fixity}, \emph{description}, and \emph{distribution} requirements given above.
+They provide a robust mechanism for exchanging large and complex data collections.
 
-Rather than start from scratch, we build on and extend an Internet Engineering Task Force (IETF) specification,
-BagIt~\cite{Kunze2015}.
-From BagIt, we take a simple structure that represents a dataset's contents as directories and files contained within a data directory,
-with other elements providing checksum and metadata information required to verify and interpret the data. 
-On this foundation, we leverage features that allow for the encoding of references to remotely accessible data, with the information required to retrieve those data provided in a \texttt{fetch.txt} file as a (URL, LENGTH, FILENAME) triple, and the specification, via the use of Research Object~\cite{bechhofer2013linked} mechanisms,
-of the type and provenance of BDBag contents.  
-The ability to reference remote data also allows the definition of data collections that specific individuals may not have immediate permission to access, 
+In defining the BDBag exchange format, 
+we build on and extend an Internet Engineering Task Force (IETF) specification, BagIt~\cite{Kunze2015}.
+A dataset's contents are captured as
+directories and files contained within a \texttt{data} directory,
+with other elements providing checksum and metadata information (e.g., type and provenance)
+required to verify and interpret the data.
+%Research Object~\cite{bechhofer2013linked} mechanisms can be used to specify
+%of the type and provenance of BDBag contents
+References to remotely accessible data can be included in a \texttt{fetch.txt} file. 
+%with the information required to retrieve those data provided in a \texttt{fetch.txt} file as a (URL, LENGTH, FILENAME) triple.  
+The ability to reference remote data allows for the concise specification of large datasets, and
+also allows the definition of data collections that specific individuals may not have immediate permission to access, 
 as when access to data elements is restricted by data use agreements.
+
 We then developed a comprehensive suite of tools for creating BDBags, for
-materialize the data in a BDBag in a standard way, for capturing metadata, 
+materializing the data in a BDBag in a standard way, for capturing metadata, 
 and for verifying contents based on checksums of individual data and metadata items.
 
+\vspace{2ex}
 
-\begin{figure}
-\centering
-\includegraphics[width=0.8\textwidth]{figs/bdbag_gui_version.png}
-\caption{To give a flavor of the BDBag specification, we show an example of the BDBag GUI application selecting a bag
-representing the ABIDE preprocessed dataset available at \smallurl{https://bd2kcat1.ini.usc.edu/abide/search/}.}
-\end{figure}
+\noindent\fbox{%
+    \parbox{0.985\textwidth}{%
+The BDBag makes it possible to
+capture in a concise document a consistent, self-describing, integrity-verifiable description of even
+extremely large quantities of data.
+A BDBag of just a few hundred bytes may contain references to many terabytes, and 
+can be stored, referenced in a paper, and exchanged with other researchers or tools
+and then resolved at any point to access the referenced data.
+}}
 
-In summary, our contributions span four areas:
-\begin{enumerate}
-\item
-We designed, and obtained broad community support for, BagIt extensions that allow for big scientific data.
-These extensions include comprehensive support for
-``holey" bags (i.e., bags that contain references to remote data)
-and mechanisms for associating descriptions of bag contents in the form of a Research Object~\cite{bechhofer2013linked}.
+%\begin{figure}
+%\centering
+%\includegraphics[width=0.8\textwidth]{figs/bdbag_gui_version.png}
+%\caption{To give a flavor of the BDBag specification, we show an example of the BDBag GUI application selecting a bag
+%representing the ABIDE preprocessed dataset available at \smallurl{https://bd2kcat1.ini.usc.edu/abide/search/}.}
+%\end{figure}
 
-\item
-We developed high-quality open source implementations of tools for creating BDBags,
-%along with associated file references and RO description,
-for resolving files that are represented via remote references, for validating
-bags, for creating bags of bags, and other purposes.
-
-\item
-We integrated these mechanisms with a range of other tools, 
-from Minids and Globus to ENCODE and Galaxy 
-to provide an end-to-end solution to the problem of organizing and sharing big data. 
-
-\item
-We developed compelling example applications that demonstrate the value of BDBag capabilities.
-
-\end{enumerate}
+%\noindent\fbox{%
+%    \parbox{\textwidth}{%
+%In summary, our contributions span four areas:
+%\begin{enumerate}
+%\item
+%We designed, and obtained broad community support for, BagIt extensions that allow for big scientific data.
+%These extensions include comprehensive support for
+%``holey" bags (i.e., bags that contain references to remote data)
+%and mechanisms for associating descriptions of bag contents in the form of a Research Object~\cite{bechhofer2013linked}.
+%
+%\item
+%We developed high-quality open source implementations of tools for creating BDBags,
+%%along with associated file references and RO description,
+%for resolving files that are represented via remote references, for validating
+%bags, for creating bags of bags, and other purposes.
+%
+%\item
+%We integrated these mechanisms with a range of other tools, 
+%from Minids and Globus to ENCODE and Galaxy 
+%to provide an end-to-end solution to the problem of organizing and sharing big data. 
+%
+%\item
+%We developed compelling example applications that demonstrate the value of BDBag capabilities.
+%
+%\end{enumerate}
+%}
+%}
 
 %These mechanisms enable the exchange of large, self-describing datasets without copying large amounts of data.
 %Indeed, a ``holey'' BDBag that a hundreds of bytes in size can provide a complete description of 
 
-The result is an entirely new capability that makes it possible to
-capture in a concise document a consistent, self-describing, integrity-verifiable description of many quantities of data.
-\emph{A BDBag of just a few hundred bytes may contain references to many terabytes, and 
-can be stored, referenced in a paper, and exchanged with other researchers or tools
-and then resolved at any point to access the referenced data.}
+
 
 %(a ``holey'' BDBag that contains only references, not data, may be just a few hundreds of bytes in size
 
@@ -163,9 +222,14 @@ and then resolved at any point to access the referenced data.}
 %showing the associated metadata, including locations (in this case, just one).\label{fig:3}}
 %\end{figure}
 
-\subsection{Minimal identifiers}
+\subsection{Minid: A minimal viable identifier}
 
-We designed the minimal viable identifier (\textbf{Minid})~\cite{chard16} to meet researcher needs
+The minimal viable identifier (\textbf{Minid}) identifier and associated tools address the \emph{identify} and \emph{fixity} requirements
+identified above~\cite{chard16}.
+They provide mechanisms for uniquely identifying a dataset and, if desired, its constituent elements, 
+regardless of their location.
+
+We designed the Minid to meet researcher needs
 for robustly naming the many datasets that may be created in the course of their work, 
 so that they can uniquely reference and locate data,
 and share and exchange names (rather than an entire dataset) 
@@ -197,7 +261,19 @@ The consumer can then determine which copy of the data is ``best'' for their pur
 As with BDBags, we created the Minid construct via the artful combination of existing and new capabilities.
 We combine ARKs as names, 
 \texttt{\href{https://identifiers.org}{identifiers.org}} and \texttt{\href{https://n2t.net}{n2t.net}} for name resolution,
-and the Amazon cloud to host the Minid service that we have created. 
+and the Amazon cloud to host the Minid service that we have created.
+
+\vspace{2ex}
+
+\noindent\fbox{%
+    \parbox{0.985\textwidth}{%
+The Minid makes it possible to generate, at any time and at insignificant cost, a persistent identifier
+for a file or dataset. 
+This identifier can be stored, embedded in documents, and communicated to others,
+and be resolved at any point to access an associated landing page and the location(s)
+of the referenced data.
+}}
+ 
 
 
 \subsection{Using BDBags and Minids together} 
@@ -283,15 +359,20 @@ aaaa\=\kill
 
 \subsection{BDBag Graphical User Interface}
 
-Users new to BDBag and Bagit technology can download the BDBag GUI application for Windows an MacOSX systems from
-\smallurl{https://github.com/ini-bdds/bdbag_gui/releases}.  The BDBag GUI provides an intuitive graphical interface for
-working with any Bagit specification-compliant bag directory or archive, making the creation, consumption, and
+Users new to BDBag technology can download the BDBag GUI application for Windows and MacOS systems from
+\smallurl{https://github.com/ini-bdds/bdbag_gui/releases}.  This GUI provides an intuitive graphical interface for
+working with any BagIt (and thus BDBag) specification-compliant bag directory or archive, making the creation, consumption, and
 materialization of BDBags trivially easy for those who want a point-and-click user experience.
+Figures~\ref{fig:gui1} and~\ref{fig:gui2} show the GUI.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{figs/bdbag_gui_fetch.png}
-\caption{TBD}
+\includegraphics[width=0.49\textwidth]{figs/bdbag_gui_version.png}
+\includegraphics[width=0.49\textwidth]{figs/bdbag_gui_fetch.png}
+\caption{Two views of the BDBag GUI. 
+On the left, the user is browsing a BDBag named ABIDE-Full. The top pane shows the operations
+supported. On the right, the user has initiated a ``Fetch Missing" operation on the ABIDE-Full
+bag. Progress is shown in the lower panes.\label{fig:gui}}
 \end{figure}
 
 \subsection{BDBag and Minid Python APIs} 
