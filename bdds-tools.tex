@@ -230,19 +230,19 @@ and then resolved at any point to access the referenced data.
 
 The minimal viable identifier (\textbf{Minid}) identifier and associated tools address the \emph{identify} and \emph{fixity} requirements
 identified above~\cite{chard16}.
-They provide mechanisms for uniquely identifying a dataset and, if desired, its constituent elements, 
-regardless of their location.
+%They provide mechanisms for uniquely identifying a dataset and, if desired, its constituent elements, 
+%regardless of their location.
 
 We designed the Minid to meet researcher needs
 for robustly naming the many datasets that may be created in the course of their work, 
 so that they can uniquely reference and locate data,
-and share and exchange names (rather than an entire dataset) 
+and share and exchange names (rather than an entire dataset),
 while being able to ensure that a dataset's contents are unchanged.
 The Digital Object Identifiers (DOIs) that are sometimes used for this purpose
 are heavyweight constructs designed for naming resources such as scholarly articles
 that are created only rarely.
-Minids, by contrast, are lightweight, low-cost identifiers designed to enable frequent creation;
-they can be easily created, resolved, and used in their millions. 
+Minids, by contrast, are lightweight, low-cost identifiers %designed to enable frequent creation;
+that can be easily created, resolved, and used in their millions. 
 
 Minids  take the form \texttt{minid:[suffix]}, where  the suffix is a unique sequence of characters
 and can be resolved, for example via \texttt{\href{https://n2t.net}{n2t.net}},
@@ -624,9 +624,18 @@ export.
 
 \end{itemize}
 
-Futhermore, BDBags is being actively evaluated as an common interoperability mechanism within the NIH Data Commons Pilot, which is part of the BD2K program.  To date, BDBags and MINIDs have been adopted four of the funded projects, and is being evaluated for inclusion by several additional teams.
+%\vspace{2ex}
 
-\bibliographystyle{unsrt}
+\noindent\shadowbox{%
+    \parbox{0.985\textwidth}{%
+BDBags and Minids are also being evaluated as a common interoperability mechanism within the new NIH Data Commons Pilot Program (DCPP).  
+To date, BDBags and Minids have been adopted by four of the DCPP ``full stack" projects, 
+and are being evaluated for use by several additional teams.
+}}
+
+
+\small
+\bibliographystyle{abbrv}
 \bibliography{refs,minid}
 
 \end{document}
